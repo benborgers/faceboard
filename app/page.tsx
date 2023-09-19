@@ -27,7 +27,9 @@ export default function Home() {
     fetchData();
 
     const interval = setInterval(() => {
-      fetchData();
+      if (document.visibilityState === "visible") {
+        fetchData();
+      }
     }, 2_000);
 
     return () => clearInterval(interval);
