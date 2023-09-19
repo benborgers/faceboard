@@ -2,7 +2,6 @@
 
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const ROTATIONS = [-1, 1, -1.5, 0.5, -1.5, 0.5, 1, -1];
@@ -50,33 +49,24 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <Link
-        href="/upload"
-        className="bg-blue-600 font-semibold w-full rounded-full p-2 text-white block text-center"
-      >
-        Upload
-      </Link>
-
-      <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4 items-center">
-        {data.photos.map((photo, i) => (
-          <a
-            key={photo._id}
-            href={photo.url}
-            target="_blank"
-            className="cursor-zoom-in"
-          >
-            <img
-              src={photo.url}
-              alt="A photo uploaded to faceboard"
-              className="block rounded-lg shadow"
-              style={{
-                transform: `rotate(${ROTATIONS[i % ROTATIONS.length]}deg)`,
-              }}
-            />
-          </a>
-        ))}
-      </div>
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 items-center">
+      {data.photos.map((photo, i) => (
+        <a
+          key={photo._id}
+          href={photo.url}
+          target="_blank"
+          className="cursor-zoom-in"
+        >
+          <img
+            src={photo.url}
+            alt="A photo uploaded to faceboard"
+            className="block rounded-lg shadow"
+            style={{
+              transform: `rotate(${ROTATIONS[i % ROTATIONS.length]}deg)`,
+            }}
+          />
+        </a>
+      ))}
     </div>
   );
 }

@@ -20,9 +20,19 @@ export default function RootLayout({
         className={`antialiased bg-gray-50 text-gray-700 ${inter.className}`}
       >
         <header className="bg-white border-b border-gray-200 p-4">
-          <div className="max-w-screen-sm mx-auto">
-            <Link href="/" className="block text-xl font-bold text-blue-700">
+          <div className="max-w-screen-sm mx-auto flex justify-between items-center">
+            <Link
+              href="/"
+              className="block text-xl font-bold text-blue-600 tracking-tighter"
+            >
               faceboard
+            </Link>
+
+            <Link
+              href="/upload"
+              className="bg-blue-600 font-semibold text-sm rounded-full px-3 py-1 text-white block text-center"
+            >
+              Upload weird photos for all to see -&gt;
             </Link>
           </div>
         </header>
