@@ -60,7 +60,9 @@ export default function Home() {
           className="cursor-zoom-in"
         >
           <img
-            src={photo.url}
+            src={`https://wsrv.nl/?url=${encodeURIComponent(
+              photo.url
+            )}&output=jpg`}
             alt="A photo uploaded to faceboard"
             className="block rounded-lg shadow"
             style={{
