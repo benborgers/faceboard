@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import mongo from "../mongo";
 
-export const GET = async (req: Request) => {
+export const revalidate = 0;
+
+export const GET = async () => {
   await mongo.connect();
 
   const db = mongo.db("test");
