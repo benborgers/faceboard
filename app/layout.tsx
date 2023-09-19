@@ -32,7 +32,7 @@ export default function RootLayout({
               href="/upload"
               className="bg-blue-600 font-semibold text-sm rounded-full px-3 py-1 text-white block text-center"
             >
-              Upload weird photos for all to see -&gt;
+              Share a beautiful photo -&gt;
             </Link>
           </div>
         </header>
