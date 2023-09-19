@@ -65,7 +65,15 @@ export default function Home() {
         </Link>
       }
     >
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 items-center">
+      <div className="flex justify-end items-center gap-x-2 pr-2">
+        <div className="relative h-2.5 w-2.5">
+          <div className="animate-ping absolute h-full w-full rounded-full bg-red-600/75" />
+          <div className="h-2.5 w-2.5 rounded-full bg-red-600" />
+        </div>
+        <p className="text-red-600 font-bold text-sm">Live</p>
+      </div>
+
+      <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 items-center">
         {data.photos.map((photo, i) => (
           <a
             key={photo._id}
