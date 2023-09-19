@@ -1,14 +1,8 @@
 import { NextResponse } from "next/server";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 
-const client = new S3Client({
-  endpoint: process.env.S3_ENDPOINT!,
-  region: process.env.S3_REGION!,
-  credentials: {
-    accessKeyId: process.env.S3_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
-  },
-});
+import s3 from "../s3";
+import mongo from "../mongo";
 
 export const POST = async (req: Request) => {
   const formData = await req.formData();
@@ -24,12 +18,18 @@ export const POST = async (req: Request) => {
     ACL: "public-read",
   });
 
-  const response = await client.send(command);
+  const response = await s3.send(command);
   console.log("Uploaded to S3", response);
 
-  const url = process.env.S3_PUBLIC_URL + filename;
-
+  const url = process.env.S3_PUBLIC_URL + "/" + filename;
   console.log("url", url);
+
+  await mongo.connect();
+
+  const db = mongo.db("test");
+  const collection = db.collection("photos");
+
+  await collection.insertOne({ url, created_at: Date.now() });
 
   return NextResponse.json({ success: true });
 };
