@@ -12,6 +12,7 @@ export default function Home() {
   const [data, setData] = useState<{
     settings: {
       off: boolean;
+      question_mode: boolean;
     };
     photos: {
       _id: string;
@@ -57,12 +58,21 @@ export default function Home() {
   return (
     <Layout
       slot={
-        <Link
-          href="/upload"
-          className="bg-blue-600 font-semibold text-sm rounded-full px-3 py-1 text-white block text-center"
-        >
-          Contribute bad photo(s) -&gt;
-        </Link>
+        data.settings.question_mode ? (
+          <Link
+            href="/ask"
+            className="bg-blue-600 font-semibold text-sm rounded-full px-3 py-1 text-white block text-center"
+          >
+            Ask a question -&gt;
+          </Link>
+        ) : (
+          <Link
+            href="/upload"
+            className="bg-blue-600 font-semibold text-sm rounded-full px-3 py-1 text-white block text-center"
+          >
+            Contribute bad photo(s) -&gt;
+          </Link>
+        )
       }
     >
       <div className="flex justify-end items-center gap-x-2 pr-2">
